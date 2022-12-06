@@ -1,0 +1,56 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package proyecto;
+
+import implementaciones.NoDiGraph;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Edgar Emir Borbon Jimenez 00000233184
+ */
+public class Control {
+
+    Scanner c = new Scanner(System.in);
+    NoDiGraph<String, Double, Double> grafo;
+    int cont;
+    int max;
+
+    public Control(int cantCiudades) {
+        this.grafo = new NoDiGraph<>(cantCiudades);
+        max = cantCiudades;
+        cont = 0;
+
+    }
+
+    public void addCity() {
+        if (cont == max) {
+            System.out.println("Cupo lleno elimina registros de Ciudades para agregar otra ciudad...");
+            return;
+        }
+        System.out.println("Ingresa le ciudad:");
+        String city = c.nextLine();
+        grafo.addVertex(city);
+        System.out.println("Se agrego con exito");
+        cont++;
+    }
+
+    public void addColindancia() {
+        System.out.println("Ingresa la primer ciudad:");
+        String c1 = c.nextLine();
+        System.out.println("Ingresa la segunda ciudad:");
+        String c2 = c.nextLine();
+        
+        grafo.addEdge(c1, c2);
+    }
+
+    public String listCities() {
+        return grafo.getVertices().toString();
+    }
+    
+    public String listColindancias(){
+    return grafo.getAdyacencias().toString();
+    }
+}
